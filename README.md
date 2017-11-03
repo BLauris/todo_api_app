@@ -1,25 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* rails  `5.1.4`
 
-Things you may want to cover:
+* ruby `2.4.2`
 
-* Ruby version
+* `rake db:create db:migrate` 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# todo_api_app
+* rspec spec
