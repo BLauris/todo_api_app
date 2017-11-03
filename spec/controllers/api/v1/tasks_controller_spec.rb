@@ -4,15 +4,15 @@ RSpec.describe Api::V1::TasksController, type: :controller do
 
   describe 'GET /api/v1/tasks' do
     
-    before { get :index }
-    
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
+    before do 
     end
-
-    it 'returns all tasks items' do
-      json = JSON.parse(response.body)
-      expect(json["data"]).to eq(0)
+    
+    it 'returns all Tasks' do
+      get :index
+      expect(response).to have_http_status(200)
+      
+      response_json = JSON.parse(response.body)
+      expect(response_json["data"].size).to eq(19)
     end
   end
   
@@ -30,7 +30,8 @@ RSpec.describe Api::V1::TasksController, type: :controller do
         response_json = JSON.parse(response.body)
         
         expect(response).to have_http_status(200)
-        expect(response_json["title"]).to eq(valid_params[:attributes][:title])
+        expect(response_json["data"]["type"]).to eq("tasks")
+        expect(response_json["data"]["attributes"]["title"]).to eq(valid_params[:attributes][:title])
       end
       
       it "successfully creates new task and adds tags" do
@@ -45,7 +46,7 @@ RSpec.describe Api::V1::TasksController, type: :controller do
         response_json = JSON.parse(response.body)
         
         expect(response).to have_http_status(200)
-        expect(response_json["title"]).to eq(valid_params[:attributes][:title])
+        expect(response_json["data"]["attributes"]["title"]).to eq(valid_params[:attributes][:title])
       end
     end
     
@@ -80,8 +81,8 @@ RSpec.describe Api::V1::TasksController, type: :controller do
         
         expect(response).to have_http_status(200)
         expect(task.title).to eq("new title")
-        expect(response_json["id"]).to eq(task.id)
-        expect(response_json["title"]).to eq(task.title)
+        expect(response_json["data"]["id"]).to eq(task.id.to_s)
+        expect(response_json["data"]["attributes"]["title"]).to eq(task.title)
       end
       
       it "successfully updates task and adds tags" do

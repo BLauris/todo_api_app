@@ -4,15 +4,12 @@ RSpec.describe Api::V1::TagsController, type: :controller do
 
   describe 'GET /api/v1/tags' do
     
-    before { get :index }
-    
-    it 'returns status code 200' do
+    it 'returns all tags' do
+      get :index
+      response_json = JSON.parse(response.body)
+      
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns all tags items' do
-      json = JSON.parse(response.body)
-      expect(json.size).to eq(0)
+      expect(response_json["data"].size).to eq(18)
     end
   end
   
@@ -25,7 +22,7 @@ RSpec.describe Api::V1::TagsController, type: :controller do
       response_json = JSON.parse(response.body)
       
       expect(response).to have_http_status(200)
-      expect(response_json["title"]).to eq("Tag 1")
+      expect(response_json["data"]["attributes"]["title"]).to eq("Tag 1")
     end
     
     it "responds with errors" do

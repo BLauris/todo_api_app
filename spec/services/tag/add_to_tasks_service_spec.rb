@@ -10,7 +10,8 @@ describe Tag::AddToTasksService do
   end
   
   it "created tags with valid title" do
-    expect(Tag.all.pluck(:title).sort).to eq(tags.reject(&:blank?).uniq.sort)
+    # Default scope orders by created_at DESC, that's why limit 3
+    expect(Tag.limit(3).pluck(:title).sort).to eq(tags.reject(&:blank?).uniq.sort)
   end
   
 end
