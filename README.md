@@ -4,6 +4,6 @@
 
 * ruby `2.4.2`
 
-* `rake db:create db:migrate` 
+* rake db:create db:migrate 
 
 * rspec spec
