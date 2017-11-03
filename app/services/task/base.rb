@@ -13,4 +13,8 @@ class Task::Base
       Tag::AddToTasksService.add(tag_list, task.id)
     end
     
+    def valid?
+      errors.blank?
+    end
+    
 end
