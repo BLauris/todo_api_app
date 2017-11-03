@@ -11,10 +11,8 @@ class Tag::AddToTasksService
   
   def create_and_add
     tag_list.each do |title|
-      ActiveRecord::Base.transaction do
-        tag = tag(title)
-        create_task_tag(tag.id)
-      end
+      tag = tag(title)
+      create_task_tag(tag.id)
     end
   end
   
