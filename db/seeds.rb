@@ -21,7 +21,7 @@ if Rails.env == "test" || Rails.env == "development"
   3.times do
     task = Task.create(title: Faker::Witcher.quote)
     
-    tag_1 = Tag.create(title: Faker::Witcher.character)
+    tag_1 = Tag.create(title: Faker::Pokemon.name)
     tag_2 = Tag.create(title: Faker::Zelda.character)
 
     TaskTag.create(task_id: task.id, tag_id: tag_1.id)
