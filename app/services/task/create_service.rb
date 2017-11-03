@@ -1,12 +1,14 @@
 class Task::CreateService < Task::Base
   
   def save
-    if errors.blank?
+    validate!
+    
+    if valid?
       task.save 
       add_tags
     end
     
-    errors.blank?
+    valid?
   end
   
   private
@@ -17,7 +19,7 @@ class Task::CreateService < Task::Base
     
     def validate!
       task.valid?
-      task.errors.full_messages
+      errors.concat(task.errors.full_messages)
     end
   
 end

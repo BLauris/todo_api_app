@@ -4,12 +4,14 @@ class Task::UpdateService < Task::Base
   attribute :status_code, Symbol
     
   def update
-    if errors.blank?
+    validate!
+    
+    if valid?
       task.save 
       add_tags
     end
     
-    errors.blank?
+    valid?
   end
   
   private
@@ -22,13 +24,17 @@ class Task::UpdateService < Task::Base
   
     def validate!      
       unless task.present?
-        self.status_code = :not_found
-        ["Task with id '#{id}' not found"]
+        errors << "Task with id '#{id}' not found"
+        set_status_code(:not_found)
       else        
         task.valid?
-        self.status_code = :not_acceptable
-        task.errors.full_messages
-      end      
+        errors.concat(task.errors.full_messages)
+        set_status_code(:not_acceptable)
+      end
+    end
+    
+    def set_status_code(status_code)
+      self.status_code = valid? ? :ok : status_code
     end
     
 end

@@ -5,7 +5,7 @@ class Task::Base
   attribute :task_params, Hash
   attribute :tag_list, Array
   attribute :task, Task, default: :init_task
-  attribute :errors, Array, default: :validate!
+  attribute :errors, Array, default: []
   
   private
   
