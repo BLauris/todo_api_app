@@ -16,6 +16,9 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+ActiveModel::Serializer.config.adapter = :json_api
+ActiveModelSerializers.config.key_transform = :underscore
+
 module TodoApiApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

@@ -12,7 +12,7 @@ RSpec.describe Api::V1::TasksController, type: :controller do
 
     it 'returns all tasks items' do
       json = JSON.parse(response.body)
-      expect(json.size).to eq(0)
+      expect(json["data"]).to eq(0)
     end
   end
   
