@@ -4,7 +4,7 @@ module Api
       before_action :set_tag, only: [:update, :destroy]
       
       def index
-        render json: Tag.all, each_serializer: TaskSerializer, status: :ok
+        render json: Tag.all, each_serializer: TagSerializer, status: :ok
       end
       
       def create
