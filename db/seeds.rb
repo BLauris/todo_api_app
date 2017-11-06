@@ -5,7 +5,8 @@ if Rails.env == "test" || Rails.env == "development"
   Tag.destroy_all
 
   puts " -----> Add Tasks"
-  10.times do
+  
+  9.times do
     Task.create(title: Faker::WorldOfWarcraft.quote)
   end
 
@@ -40,6 +41,8 @@ if Rails.env == "test" || Rails.env == "development"
     TaskTag.create(task_id: task.id, tag_id: tag_2.id)
     TaskTag.create(task_id: task.id, tag_id: tag_3.id)
   end
+
+  Task.create(title: "Wash laundry")
 
   puts " -----> DONE"
 end
